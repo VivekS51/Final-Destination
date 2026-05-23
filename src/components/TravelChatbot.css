@@ -1,0 +1,81 @@
+.travel-chatbot-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    padding: 2rem;
+    border-radius: 30px;
+    background: #ffffff; /* Fallback */
+    background: linear-gradient(135deg, #f6f8fb 0%, #f1f5f9 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 20px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Decorative colorful blobs for the glassmorphism effect */
+.glass-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 0;
+    animation: float 12s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.glass-blob-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    top: -100px;
+    left: -100px;
+}
+
+.glass-blob-2 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #4285F4, #34A853);
+    bottom: -100px;
+    right: -50px;
+    animation-delay: -6s;
+}
+
+/* The actual glass container */
+.glassmorphism-bot-container {
+    position: relative;
+    z-index: 10;
+    height: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 40px rgba(31, 38, 135, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.botpress-iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.5); /* Semi-transparent fallback */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}

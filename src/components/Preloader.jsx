@@ -14,22 +14,13 @@ const Preloader = () => {
         <div className={`preloader ${hide ? 'hide' : ''}`}>
             <div className="loader">
                 <div className="loader-inner">
-                    <span>I</span>
-                    <span>N</span>
-                    <span>C</span>
-                    <span>R</span>
-                    <span>E</span>
-                    <span>D</span>
-                    <span>I</span>
-                    <span>B</span>
-                    <span>L</span>
-                    <span>E</span>
-                    <span>&nbsp;</span>
-                    <span>I</span>
-                    <span>N</span>
-                    <span>D</span>
-                    <span>I</span>
-                    <span>A</span>
+                    <div className="center-dot"></div>
+                    <div className="rotating-line">
+                        <div className="sweeping-dot"></div>
+                    </div>
+                    {Array.from({ length: 8 }).map((_, i) => (
+                        <div className={`loader-dot dot-${i + 1}`} key={i}></div>
+                    ))}
                 </div>
             </div>
         </div>

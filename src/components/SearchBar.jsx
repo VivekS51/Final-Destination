@@ -67,8 +67,8 @@ const SearchBar = () => {
                     onFocus={() => setIsFocused(true)}
                     className="smart-search-input"
                 />
-                <div className="azure-badge">
-                    <i className="fas fa-bolt"></i> Cognitive Search
+                <div className="azure-badge" style={{ background: 'linear-gradient(135deg, #4285F4, #0F9D58)' }}>
+                    <i className="fas fa-magic"></i> AI Smart Search
                 </div>
             </div>
 

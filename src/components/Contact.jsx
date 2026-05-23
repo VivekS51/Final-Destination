@@ -79,18 +79,18 @@ const Contact = () => {
             
             <div className="map-section reveal-element" style={{ marginTop: '5rem' }}>
                 <div className="section-title">
-                    <span className="subtitle" style={{ color: '#0078D4' }}><i className="fas fa-map"></i> Location</span>
+                    <span className="subtitle" style={{ color: '#4285F4' }}><i className="fas fa-map"></i> Location</span>
                     <h2>Find Us Here</h2>
                 </div>
-                <div className="azure-map-container" style={{ height: '450px', position: 'relative', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.3)', boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }}>
-                    <div className="azure-map-overlay" style={{ position: 'absolute', top: 20, right: 20, background: 'rgba(255,255,255,0.85)', padding: '10px 20px', borderRadius: '30px', zIndex: 10, fontSize: '0.9rem', fontWeight: 'bold', color: '#0078D4', boxShadow: '0 8px 20px rgba(0,0,0,0.15)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <i className="fas fa-bolt"></i> Azure Maps Simulation
+                <div className="google-map-container" style={{ height: '450px', position: 'relative', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.3)', boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }}>
+                    <div className="google-map-overlay" style={{ position: 'absolute', top: 20, right: 20, background: 'rgba(255,255,255,0.85)', padding: '10px 20px', borderRadius: '30px', zIndex: 10, fontSize: '0.9rem', fontWeight: 'bold', color: '#4285F4', boxShadow: '0 8px 20px rgba(0,0,0,0.15)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <i className="fab fa-google"></i> Google Maps
                         <button 
                             onClick={() => setIsSatellite(!isSatellite)}
                             style={{ 
                                 marginLeft: '10px', 
                                 padding: '6px 14px', 
-                                background: isSatellite ? '#0078D4' : '#f0f0f0', 
+                                background: isSatellite ? '#4285F4' : '#f0f0f0', 
                                 color: isSatellite ? '#fff' : '#333', 
                                 border: 'none', 
                                 borderRadius: '20px', 
@@ -108,8 +108,8 @@ const Contact = () => {
                             {isSatellite ? 'Roadmap' : 'Satellite'}
                         </button>
                     </div>
-                    {/* Highly reliable Microsoft Bing/Azure Maps embed styled nicely with dynamic mode */}
-                    <iframe src={`https://www.bing.com/maps/embed?h=450&w=1000&cp=28.630771~77.225675&lvl=15&typ=d&sty=${isSatellite ? 'h' : 'r'}&src=SHELL&FORM=MBEDV8`} width="100%" height="100%" style={{ border: 0, filter: isSatellite ? 'contrast(1.1) brightness(1.1)' : 'contrast(1.1) opacity(0.95)', transition: 'filter 0.5s ease' }} allowFullScreen="" loading="lazy"></iframe>
+                    {/* Google Maps standard keyless embed for location search */}
+                    <iframe src={`https://maps.google.com/maps?q=123%20Tourism%20Avenue,%20New%20Delhi&t=${isSatellite ? 'k' : 'm'}&z=15&ie=UTF8&iwloc=&output=embed`} width="100%" height="100%" style={{ border: 0, filter: isSatellite ? 'contrast(1.1) brightness(1.1)' : 'contrast(1.1) opacity(0.95)', transition: 'filter 0.5s ease' }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>

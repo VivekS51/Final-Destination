@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { destinationsData } from '../data/destinations';
 import { realImages } from '../data/realImages';
+import LiveTravelMap from '../components/LiveTravelMap';
+import TravelChatbot from '../components/TravelChatbot';
 
 const DestinationPage = () => {
     const { id } = useParams();
@@ -82,7 +84,7 @@ const DestinationPage = () => {
                 </div>
             </div>
 
-            <div className="destination-content-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '5rem 5%', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '3rem' }}>
+            <div className="destination-content-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '5rem 5%' }}>
                 
                 <div className="destination-main-content reveal-element is-visible">
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--dark-color)' }}>About {destination.title}</h2>
@@ -99,18 +101,9 @@ const DestinationPage = () => {
                         ))}
                     </ul>
 
-                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--dark-color)' }}>Trip Itinerary</h3>
-                    <div className="itinerary-container" style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '3rem' }}>
-                        {destination.itinerary.map((item, index) => (
-                            <div key={index} className="itinerary-card" style={{ background: 'var(--white-color)', padding: '20px', borderRadius: '10px', borderLeft: '4px solid var(--primary-color)', boxShadow: '0 5px 15px rgba(0,0,0,0.03)' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px' }}>
-                                    <span style={{ background: 'var(--primary-color)', color: 'white', padding: '5px 15px', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>{item.day}</span>
-                                    <h4 style={{ fontSize: '1.2rem', color: 'var(--dark-color)', margin: 0 }}>{item.title}</h4>
-                                </div>
-                                <p style={{ color: 'var(--medium-gray)', margin: 0, paddingLeft: '5px' }}>{item.description}</p>
-                            </div>
-                        ))}
-                    </div>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--dark-color)' }}>Plan Your Backpacking Itinerary</h3>
+                    <TravelChatbot destination={destination} />
+
 
                     <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--dark-color)' }}>Gallery</h3>
                     <div className="destination-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
@@ -156,6 +149,18 @@ const DestinationPage = () => {
                     </div>
                 </div>
 
+            </div>
+
+            {/* Live Travel Route Explorer */}
+            <div style={{ maxWidth: '1400px', margin: '0 auto 5rem auto', padding: '0 5%' }}>
+                <div className="section-title reveal-element is-visible" style={{ textAlign: 'left', marginBottom: '2rem' }}>
+                    <span className="subtitle" style={{ color: '#4285F4' }}><i className="fas fa-route"></i> Live Travel Map</span>
+                    <h2 style={{ fontSize: '2.5rem', marginTop: '10px' }}>Plan Route to {destination.title}</h2>
+                    <p>Check the live route from your location, view real-time weather, and explore photos.</p>
+                </div>
+                <div className="reveal-element is-visible">
+                    <LiveTravelMap initialDestination={`${destination.title}, ${destination.state}, India`} />
+                </div>
             </div>
         </div>
     );

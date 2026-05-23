@@ -81,7 +81,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--white-color);
+    background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,45 +96,134 @@ img {
 
 .loader {
     position: relative;
+    width: 200px;
+    height: 200px;
 }
 
 .loader-inner {
-    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
 }
 
-.loader-inner span {
-    display: inline-block;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    animation: wave 1.5s infinite;
-    animation-delay: calc(0.1s * var(--i));
+.center-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    z-index: 10;
 }
 
-.loader-inner span:nth-child(1) { --i: 1; }
-.loader-inner span:nth-child(2) { --i: 2; }
-.loader-inner span:nth-child(3) { --i: 3; }
-.loader-inner span:nth-child(4) { --i: 4; }
-.loader-inner span:nth-child(5) { --i: 5; }
-.loader-inner span:nth-child(6) { --i: 6; }
-.loader-inner span:nth-child(7) { --i: 7; }
-.loader-inner span:nth-child(8) { --i: 8; }
-.loader-inner span:nth-child(9) { --i: 9; }
-.loader-inner span:nth-child(10) { --i: 10; }
-.loader-inner span:nth-child(11) { --i: 11; }
-.loader-inner span:nth-child(12) { --i: 12; }
-.loader-inner span:nth-child(13) { --i: 13; }
-.loader-inner span:nth-child(14) { --i: 14; }
-.loader-inner span:nth-child(15) { --i: 15; }
-.loader-inner span:nth-child(16) { --i: 16; }
+.center-dot::before, .center-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: centerPulse 1.5s infinite linear;
+}
 
-@keyframes wave {
-    0%, 40%, 100% {
-        transform: translateY(0);
-    }
-    20% {
-        transform: translateY(-20px);
-    }
+.center-dot::before {
+    width: 40px;
+    height: 40px;
+}
+
+.center-dot::after {
+    width: 60px;
+    height: 60px;
+    animation-delay: 0.75s;
+}
+
+@keyframes centerPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+.rotating-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 2px;
+    background-color: #fff;
+    transform-origin: 0 50%;
+    animation: rotateLine 2s infinite linear;
+    z-index: 6;
+}
+
+.sweeping-dot {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 15px #fff, 0 0 25px #fff;
+}
+
+.loader-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    /* Calculate position for 80px radius (matching rotating-line length) */
+    transform: translate(calc(-50% + 80px * cos(var(--angle))), calc(-50% + 80px * sin(var(--angle))));
+    z-index: 5;
+}
+
+.loader-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0;
+    box-shadow: 0 0 15px #fff;
+    animation: glowDot 2s infinite linear;
+    animation-delay: var(--delay);
+}
+
+/* Match the exact sweep of the line (2s duration) */
+@keyframes glowDot {
+    0%, 15% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    25%, 35% { opacity: 1; transform: translate(-50%, -50%) scale(1.4); }
+    50%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* 8 dots positioned in a circle (360 / 8 = 45 degrees), shifted by -90deg so it starts at the top */
+.dot-1 { --angle: -90deg; --delay: 0s; }
+.dot-2 { --angle: -45deg; --delay: 0.25s; }
+.dot-3 { --angle: 0deg; --delay: 0.5s; }
+.dot-4 { --angle: 45deg; --delay: 0.75s; }
+.dot-5 { --angle: 90deg; --delay: 1.0s; }
+.dot-6 { --angle: 135deg; --delay: 1.25s; }
+.dot-7 { --angle: 180deg; --delay: 1.5s; }
+.dot-8 { --angle: 225deg; --delay: 1.75s; }
+
+/* The rotating line also needs to start at -90deg */
+@keyframes rotateLine {
+    0% { transform: translateY(-50%) rotate(-90deg); }
+    100% { transform: translateY(-50%) rotate(270deg); }
 }
 
 /* Common Styles */
@@ -2213,5 +2302,60 @@ footer {
     
     .newsletter-form .btn {
         border-radius: 30px;
+    }
+}
+
+/* Added for Responsiveness */
+.destination-content-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.map-overlay-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 360px;
+    max-height: calc(100% - 40px);
+}
+
+.poi-category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 992px) {
+    .destination-content-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .map-overlay-panel {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-height: 50%;
+        border-radius: 0;
+        border-top-left-radius: 22px;
+        border-top-right-radius: 22px;
+        order: 2;
+    }
+
+    .poi-category-grid, .settings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .poi-category-grid, .settings-grid {
+        grid-template-columns: 1fr;
     }
 }

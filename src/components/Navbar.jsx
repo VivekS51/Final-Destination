@@ -55,6 +55,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 </a>
                             </div>
                         </li>
+                        <li><Link to="/explorer" className="nav-link" onClick={closeMenu} style={{color: '#4285F4', fontWeight: 'bold'}}><i className="fas fa-map-marked-alt"></i> Live Explorer</Link></li>
                         <li><a href="/#about" className="nav-link" onClick={closeMenu}>About Us</a></li>
                         <li><a href="/#contact" className="nav-link" onClick={closeMenu}>Contact</a></li>
                     </ul>

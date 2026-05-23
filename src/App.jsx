@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import DestinationPage from './pages/DestinationPage'
+import MapExplorerPage from './pages/MapExplorerPage'
 
 // ScrollRestoration component to handle scrolling logic across routes
 const ScrollHandler = () => {
@@ -67,6 +68,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/destination/:id" element={<DestinationPage />} />
+          <Route path="/explorer" element={<MapExplorerPage />} />
         </Routes>
 
         <Footer />
