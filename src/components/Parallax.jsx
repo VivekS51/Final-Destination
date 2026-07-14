@@ -6,7 +6,6 @@ const Parallax = () => {
             <div className="parallax-content">
                 <h2>Experience the Magic of India</h2>
                 <p>From the Himalayas to the Indian Ocean, embark on a journey of discovery</p>
-                <a href="#packages" className="btn btn-light">Explore Packages</a>
             </div>
         </section>
     );
